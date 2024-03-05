@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./js/all.min.js"></script>
+    <script src="./js/chart.js"></script>
+    <script src="./js/html2pdf.js"></script>
+    <title>Daily Financial Auditing</title>
+</head>
+
+<body>
+    <!-- Add Preloader later -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <section id="navbar" class="navbar">
+        <div class="logo"><a href="/">Logo</a></div>
+        <div class="theme-changer">
+            <button id="themeBtn"><i class="themeIcon fa fa-sun"></i></button>
+        </div>
+    </section>
+
+    <section class="forms">
+        <div class="debit">
+            <h4 class="text-red">Debit <i class="fa fa-debit"></i> </h4>
+
+            <form id="debitForm">
+
+                <div class="form-group" id="db_1">
+                    <div class="labs">
+                        <button type="button" class="remover debitRemover d-none" title="Remove this"
+                            onclick="removeItem(this)"><i class="fa fa-times"></i></button>
+                    </div>
+
+                    <div class="inputs">
+                        <input type="text" class="input labelInput labelDebit" placeholder="Label e.g Sale"
+                            oninput="inputation(this)">
+                        <input type="number" class="input amountInput amountDebit" placeholder="Amount"
+                            oninput="inputation(this)">
+                    </div>
+                </div>
+
+
+            </form>
+            <button type="button" id="newDebit" title="New Debit Item"><i class="fa fa-plus"></i> Add new
+                item</button>
+        </div>
+
+        <div class="credit">
+            <h4 class="text-green">Credit <i class="fa fa-credit"></i> </h4>
+
+            <form id="creditForm">
+
+                <div class="form-group" id="cr_1">
+                    <div class="labs">
+                        <button type="button" class="remover creditRemover d-none" title="Remove this"
+                            onclick="removeItem(this)"><i class="fa fa-times"></i></button>
+                    </div>
+
+                    <div class="inputs">
+                        <input type="text" class="input labelInput labelCredit" placeholder="Label e.g Sale"
+                            oninput="inputation(this)">
+                        <input type="number" class="input amountInput amountCredit" placeholder="Amount"
+                            oninput="inputation(this)">
+                    </div>
+                </div>
+
+
+            </form>
+
+            <button type="button" id="newCredit" title="New Debit Item"><i class="fa fa-plus"></i> Add new
+                item</button>
+
+        </div>
+
+    </section>
+
+    <div>
+        <p id="info" class="d-none">No field is allowed empty</p>
+        <button type="button" id="sum" title="Calculate and provide daily leger report">Genarate
+            Ledger</button>
+    </div>
+
+    <div class="tableArea d-none">
+        <h4>Daily Ledger</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Debit</th>
+                    <th>Amount</th>
+                    <th>Credit</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="ledgerTable">
+
+            </tbody>
+            <tfoot id="ledgerFooter">
+                <tr>
+                    <th>S/N</th>
+                    <th>Total</th>
+                    <th id="totalDebit" class="text-red"></th>
+                    <th>Total</th>
+                    <th id="totalCredit" class="text-green"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+
+    <div id="result" class="d-none">
+        <div>
+            <a> Total:</a>
+            <span id="sumTotal"></span>
+        </div>
+
+        <div>
+            <a> Gross Income: </a>
+            <span id="grossIncome"></span>
+        </div>
+
+        <div id="summary">
+            <a>Loss:</a>
+            <span id="">Debit is higher than credit</span>
+        </div>
+
+        <button id="save" onclick="saveTransaction()">Save And genarate audit</button>
+    </div>
+    </div>
+
+    <div class="auditContainer d-none">
+        <button id="displayReport">Hide report</button>
+        <div id="report">
+
+        </div>
+    </div>
+
+    <h3 id="transactionText">
+        Order Transactions
+        <button type="button" id="clearAll" title="Clear all transactions" onclick="clearAll()">Clear All</button>
+    </h3>
+    <div id="charts">
+
+    </div>
+
+
+    <footer>
+        <div>&copy; My website, 2023</div>
+    </footer>
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
